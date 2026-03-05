@@ -421,47 +421,8 @@ Savings Potential (Cr) = [Yearly Loss (Cr)] * 0.15
 
 </div>
 
-### 🔑 Feature Importance Analysis (Python)
 
-```python
-# Feature Importance using Random Forest
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import LabelEncoder
 
-# Prepare data
-features = ['Age', 'MonthlyIncome', 'YearsAtCompany', 'JobSatisfaction', 
-            'WorkLifeBalance', 'OverTime', 'MaritalStatus', 'JobRole']
-X = df[features]
-y = df['Attrition']
-
-# Encode categorical variables
-le = LabelEncoder()
-X['OverTime'] = le.fit_transform(X['OverTime'])
-X['MaritalStatus'] = le.fit_transform(X['MaritalStatus'])
-X['JobRole'] = le.fit_transform(X['JobRole'])
-
-# Train model
-rf = RandomForestClassifier(n_estimators=100, random_state=42)
-rf.fit(X, y)
-
-# Feature importance
-importance = pd.DataFrame({
-    'feature': features,
-    'importance': rf.feature_importances_
-}).sort_values('importance', ascending=False)
-
-print(importance)
-# Output:
-# feature           importance
-# OverTime          0.28
-# MonthlyIncome     0.22
-# YearsAtCompany    0.18
-# JobSatisfaction   0.15
-# MaritalStatus     0.10
-# JobRole           0.07
-```
-
----
 
 ## 💡 Key Findings & Insights
 
